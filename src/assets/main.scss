@@ -1,0 +1,47 @@
+@import "./base.scss";
+
+.flex-start{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.flex-end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.flex-bt{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+// 超出部分隐藏
+@mixin textOverflow($clamp) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $clamp; 
+}
+
+//主题颜色
+$lonjin-color-primary: #456CE6;
+$lonjin-color-primary-30: #ECF0FC;
+
+
+// 文字颜色
+$text-color-primary: #111827;
+$text-color-secondary: #888B93;
+$text-color-secondary-50: #B8BABE;
+$text-color-placeholder: #CFD0D3;
+$text-color-placeholder-bold: #70747D;

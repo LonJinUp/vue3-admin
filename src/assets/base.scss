@@ -1,0 +1,28 @@
+html,body,#app{
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  line-height: 1.375;
+  outline: none;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  font-size: 14px;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  margin: 0;
+}
+
