@@ -1,39 +1,38 @@
 <script setup>
 
-const emit = defineEmits(['handleRadioChange', 'listRankingChange','updateTabData'])
+const emit = defineEmits(['handleRadioChange', 'listRankingChange', 'updateTabData'])
 const props = defineProps({
-  merchantStatisticsList: {
-    type: Object,
-    default: true,
-  },
-  statisticsList: {
-    type: Object,
-    default: true,
-  },
+	merchantStatisticsList: {
+		type: Object,
+		default: true,
+	},
+	statisticsList: {
+		type: Object,
+		default: true,
+	},
 });
 
 
 const rankingStyle = (index) => {
-  index > 3 && (index = 3);
-  const STYLE_ENUM = {
-    '0': 'table-td-one',
-    '1': 'table-td-two',
-    '2': 'table-td-three',
-    '3': 'table-td-four',
-  };
-  return STYLE_ENUM[index];
+	index > 3 && (index = 3);
+	const STYLE_ENUM = {
+		'0': 'table-td-one',
+		'1': 'table-td-two',
+		'2': 'table-td-three',
+		'3': 'table-td-four',
+	};
+	return STYLE_ENUM[index];
 };
 
 const handleRadioChange = (value) => {
-  emit('handleRadioChange',value);
+	emit('handleRadioChange', value);
 };
 const listRankingChange = (value) => {
-  emit('listRankingChange',value);
+	emit('listRankingChange', value);
 };
 const updateTabData = (value) => {
-  emit('updateTabData',value);
+	emit('updateTabData', value);
 };
-
 
 
 </script>
@@ -57,7 +56,7 @@ const updateTabData = (value) => {
 						<div v-for="(item, index) in merchantStatisticsList.list" :key="index" class="left-for">
 							<div class="sum">{{ item.sum }}</div>
 							<div class="title">{{ item.title }}</div>
-							<!-- <img :src="require(`@/${item.img}`)" alt="" class="left-img" /> -->
+							<img src="@/assets/images/WechatIMG80.jpeg" alt="" class="left-img" />
 						</div>
 					</div>
 				</div>
@@ -174,8 +173,9 @@ const updateTabData = (value) => {
 						position: absolute;
 						bottom: 0;
 						right: 0;
-						height: 50px;
-						width: 36px;
+						height: 80px;
+						width: 80px;
+						opacity: 0.2;
 					}
 				}
 			}
