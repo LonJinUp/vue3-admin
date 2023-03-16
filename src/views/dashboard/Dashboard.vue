@@ -66,11 +66,20 @@ const statisticsList = ref(
 			},
 		]
 	})
+const handleRadioChange = (value)=>{
+	console.log('左侧数据点击时间',value);
+}
+const listRankingChange = (value)=>{
+	console.log('列表日月点击事件',value);
+}
+const updateTabData = (value)=>{
+	console.log('列表切换tab点击事件',value);
+}
 </script>
 <template>
 	<div class="dashboard-wrapper">
 		<notification-bar :list="adList" :interval="5000"></notification-bar>
-		<statistics-module :merchantStatisticsList="merchantStatisticsList" :statisticsList="statisticsList" />
+		<statistics-module :merchantStatisticsList="merchantStatisticsList" :statisticsList="statisticsList" @handleRadioChange="handleRadioChange" @listRankingChange=" listRankingChange" @updateTabData="updateTabData"/>
 		<echart-card></echart-card>
 	</div>
 </template>

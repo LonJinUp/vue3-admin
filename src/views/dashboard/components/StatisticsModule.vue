@@ -1,27 +1,44 @@
 <script setup>
+
+const emit = defineEmits(['handleRadioChange', 'listRankingChange','updateTabData'])
 const props = defineProps({
-	merchantStatisticsList: {
-		type: Object,
-		default: true,
-	},
-	statisticsList: {
-		type: Object,
-		default: true,
-	},
-})
+  merchantStatisticsList: {
+    type: Object,
+    default: true,
+  },
+  statisticsList: {
+    type: Object,
+    default: true,
+  },
+});
+
 
 const rankingStyle = (index) => {
-	index > 3 && (index = 3)
-	const STYLE_ENUM = {
-		'0': 'table-td-one',
-		'1': 'table-td-two',
-		'2': 'table-td-three',
-		'3': 'table-td-four',
-	}
-	return STYLE_ENUM[index]
-}
+  index > 3 && (index = 3);
+  const STYLE_ENUM = {
+    '0': 'table-td-one',
+    '1': 'table-td-two',
+    '2': 'table-td-three',
+    '3': 'table-td-four',
+  };
+  return STYLE_ENUM[index];
+};
+
+const handleRadioChange = (value) => {
+  emit('handleRadioChange',value);
+};
+const listRankingChange = (value) => {
+  emit('listRankingChange',value);
+};
+const updateTabData = (value) => {
+  emit('updateTabData',value);
+};
+
+
 
 </script>
+
+
 <template>
 	<div class="polymerization-wrapper">
 		<div class="polymerization">
@@ -49,7 +66,7 @@ const rankingStyle = (index) => {
 					<div class="left-flex">
 						<div class="left-title">{{ statisticsList.title }}</div>
 						<div class="left-button">
-							<el-radio-group v-model="statisticsList.activeName" @change="agentRankingChange">
+							<el-radio-group v-model="statisticsList.activeName" @change="listRankingChange">
 								<el-radio-button label="untreated">昨日</el-radio-button>
 								<el-radio-button label="processing">本月</el-radio-button>
 							</el-radio-group>
