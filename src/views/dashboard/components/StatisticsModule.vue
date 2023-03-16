@@ -56,7 +56,7 @@ const updateTabData = (value) => {
 						<div v-for="(item, index) in merchantStatisticsList.list" :key="index" class="left-for">
 							<div class="sum">{{ item.sum }}</div>
 							<div class="title">{{ item.title }}</div>
-							<img src="@/assets/images/WechatIMG80.jpeg" alt="" class="left-img" />
+							<!-- <img src="@/assets/images/WechatIMG80.jpeg" alt="" class="left-img" /> -->
 						</div>
 					</div>
 				</div>
