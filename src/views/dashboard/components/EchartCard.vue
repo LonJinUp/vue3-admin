@@ -46,9 +46,9 @@ let nightingaleOption = ref({
                 borderRadius: 8
             },
             data: [
-                { value: 40, name: 'rose 1' },
-                { value: 38, name: 'rose 2' },
-                { value: 32, name: 'rose 3' },
+                { value: 40, name: '电脑' },
+                { value: 38, name: '季度' },
+                { value: 32, name: '手机' },
                 { value: 30, name: 'rose 4' },
                 { value: 28, name: 'rose 5' },
                 { value: 26, name: 'rose 6' },
@@ -80,94 +80,7 @@ let linechartOption = ref({
     ]
 })
 
-let stackedAreaOptions = ref({
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'cross',
-            label: {
-                backgroundColor: '#6a7985'
-            }
-        }
-    },
-    legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [
-        {
-            type: 'category',
-            boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        }
-    ],
-    yAxis: [
-        {
-            type: 'value'
-        }
-    ],
-    series: [
-        {
-            name: 'Email',
-            type: 'line',
-            stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-                focus: 'series'
-            },
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: 'Union Ads',
-            type: 'line',
-            stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-                focus: 'series'
-            },
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: 'Video Ads',
-            type: 'line',
-            stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-                focus: 'series'
-            },
-            data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-            name: 'Direct',
-            type: 'line',
-            stack: 'Total',
-            areaStyle: {},
-            emphasis: {
-                focus: 'series'
-            },
-            data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-            name: 'Search Engine',
-            type: 'line',
-            stack: 'Total',
-            label: {
-                show: true,
-                position: 'top'
-            },
-            areaStyle: {},
-            emphasis: {
-                focus: 'series'
-            },
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
-    ]
-})
+
 
 let echartList = {
     nightingale: {
@@ -178,10 +91,7 @@ let echartList = {
         dom: null,
         chart: null
     },
-    stackedAreaChart: {
-        dom: null,
-        chart: null
-    }
+
 
 }
 let erd = null;
@@ -206,33 +116,35 @@ let initChart = (key, element, option) => {
 onMounted(() => {
     initChart('nightingale', 'nightingale', nightingaleOption)
     initChart('linechart', 'linechart', linechartOption)
-    initChart('stackedAreaChart', 'stackedAreaChart', stackedAreaOptions)
 })
 
 </script>
 <template>
     <div class="echart-wrapper">
-        <el-row :gutter="12">
-            <el-col :span="8">
+        <el-row :gutter="20">
+            <el-col :span="12">
                 <el-card shadow="always">
+                    <h3 class="title">季度销售数据</h3>
                     <div id="linechart" style="width:100%;height:400px"></div>
                 </el-card>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="12">
                 <el-card shadow="always">
+                    <h3 class="title">销售产品占比</h3>
                     <div id="nightingale" style="width:100%;height:400px"></div>
-                </el-card>
-            </el-col>
-            <el-col :span="8">
-                <el-card shadow="always">
-                    <div id="stackedAreaChart" style="width:100%;height:400px"></div>
                 </el-card>
             </el-col>
         </el-row>
     </div>
 </template>
-<style scoped>
+<style  lang="scss" scoped>
 .echart-wrapper {
     margin: 20px auto;
+    width: 100%;
+
+    .title {
+        padding: 0px;
+        margin: 0px;
+    }
 }
 </style>

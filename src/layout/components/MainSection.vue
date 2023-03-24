@@ -25,7 +25,6 @@ watch(route, (val) => {
 .mainSection-wrapper {
     flex: 1;
     position: relative;
-    background: #fff;
     overflow-x: hidden;
 
     .container {
