@@ -22,12 +22,15 @@ watch(dalayClose, (val) => {
     }
 })
 watch(primaryMenuItem, (val) => {
+    console.log(val)
     primaryMenuItemLength.value = val.children ? val.children.length : 0
 })
 
 let updateDalayClose = (val) => {
     dalayClose.value = val
 }
+
+// 当前选中菜单
 let changePrimaryMenuItem = (item) => {
     primaryMenuItem.value = item
 }

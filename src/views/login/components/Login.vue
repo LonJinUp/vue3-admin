@@ -42,6 +42,9 @@ const submitForm = async (formEl) => {
                     {
                         path: '/dashboard',
                         name: 'Dashboard',
+                        redirect: {
+                            path: '/dashboard'
+                        },
                         meta: { title: '首页', icon: 'home' }
                     },
                     {

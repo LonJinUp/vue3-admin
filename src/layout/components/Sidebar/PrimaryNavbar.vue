@@ -12,6 +12,7 @@ let hoverIndex = ref(-1)
 let activeIndex = ref(0)
 let ivMouseEnter = ref(null)
 
+// 鼠标离开
 let handleMouseLeave = () => {
     clearTimeout(ivMouseEnter)
     hoverIndex.value = -1
@@ -24,9 +25,9 @@ let handleMouseEnter = (item, index) => {
     ivMouseEnter.value = setTimeout(() => {
         hoverIndex.value = index
         emit('updateDalayClose', false)
+        console.log(item, index)
         if (index == 0) {
-            emit('updateDalayClose', false)
-            return
+            return false;
         }
         if (item.children && item.children.length) {
             emit('changePrimaryMenuItem', item)
@@ -36,16 +37,14 @@ let handleMouseEnter = (item, index) => {
     }, 100)
 }
 
-let handleClick = (item, index, isNotRedirect) => {
+// 一级菜单点击事件
+let handleClick = (item, index) => {
     if (!item) return;
     activeIndex.value = index
-    if (item.redirect) {
-        emit('changePrimaryMenuItem', {})
-        item.children && item.children.length && emit('changePrimaryMenuItem', item)
-        !isNotRedirect && router.push(item.redirect).catch(() => { })
-    } else {
-        emit('changePrimaryMenuItem', item)
-    }
+    emit('changePrimaryMenuItem', item)
+    router.push(item.redirect || item.path).catch((error) => {
+        console.log(error, '--handleClick')
+    })
 }
 
 </script>

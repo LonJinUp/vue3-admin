@@ -60,25 +60,25 @@ let nightingaleOption = ref({
 })
 
 let linechartOption = ref({
-    legend: {
-        top: 'bottom'
+    xAxis: {
+        type: 'category',
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
     },
-    tooltip: {},
-    dataset: {
-        source: [
-            ['product', '2015', '2016', '2017'],
-            ['Matcha Latte', 43.3, 85.8, 93.7],
-            ['Milk Tea', 83.1, 73.4, 55.1],
-        ]
+    yAxis: {
+        type: 'value',
+        name: '销售额（万）元'
     },
-    xAxis: { type: 'category' },
-    yAxis: {},
     series: [
-        { type: 'bar' },
-        { type: 'bar' },
-        { type: 'bar' }
+        {
+            data: [120, 200, 150, 80, 70, 110, 130, 120, 200, 150, 80, 70, 110,],
+            type: 'bar',
+            itemStyle: {
+                color: '#7d98ee'
+            }
+        }
     ]
 })
+
 
 
 
@@ -124,7 +124,7 @@ onMounted(() => {
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-card shadow="always">
-                    <h3 class="title">季度销售数据</h3>
+                    <h3 class="title">年度销售数据</h3>
                     <div id="linechart" style="width:100%;height:400px"></div>
                 </el-card>
             </el-col>
