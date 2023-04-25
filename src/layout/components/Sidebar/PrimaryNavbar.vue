@@ -19,16 +19,13 @@ let handleMouseLeave = () => {
     emit('updateDalayClose', true)
 }
 
+// 鼠标移入
 let handleMouseEnter = (item, index) => {
     if (!item) return;
     clearTimeout(ivMouseEnter)
     ivMouseEnter.value = setTimeout(() => {
         hoverIndex.value = index
         emit('updateDalayClose', false)
-        console.log(item, index)
-        if (index == 0) {
-            return false;
-        }
         if (item.children && item.children.length) {
             emit('changePrimaryMenuItem', item)
         } else {
@@ -41,6 +38,7 @@ let handleMouseEnter = (item, index) => {
 let handleClick = (item, index) => {
     if (!item) return;
     activeIndex.value = index
+    console.log(activeIndex, '=====')
     emit('changePrimaryMenuItem', item)
     router.push(item.redirect || item.path).catch((error) => {
         console.log(error, '--handleClick')
@@ -56,7 +54,7 @@ let handleClick = (item, index) => {
             </div>
         </div>
         <ul class="menu-list" @mouseleave="handleMouseLeave">
-            <li :class="[activeIndex == index ? 'items active' : 'items']" v-for="(item, index) in menu" :key="index"
+            <li :class="[activeIndex === index ? 'items active' : 'items']" v-for="(item, index) in menu" :key="index"
                 @mouseenter="handleMouseEnter(item, index)" @click="handleClick(item, index)">
                 <svg-icon class="icon" :width="26" :height="26" :iconName="item.meta.icon"></svg-icon>
                 <p>{{ item.meta.title }}</p>

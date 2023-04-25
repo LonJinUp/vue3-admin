@@ -28,7 +28,7 @@ const hasCurrent = (item) => {
                         <div
                             :class="[defaultActive == items.path || (items.subpath && items.subpath.indexOf(defaultActive)) > -1 ? 'active' : '']">
                             <svg-icon :iconName="items.icon" class="icon" />
-                            <span>{{ items.title }}</span>
+                            <span>{{ items.meta.title }}</span>
                         </div>
                     </template>
                 </el-menu-item>
@@ -38,12 +38,12 @@ const hasCurrent = (item) => {
                     <template #title>
                         <div :class="['menu-title flex-start', hasCurrent(items) ? 'active' : '']">
                             <svg-icon :iconName="items.icon" class="icon" />
-                            <span>{{ items.title }}</span>
+                            <span>{{ items.meta.title }}</span>
                         </div>
                     </template>
                     <el-menu-item v-for="(child, ind) in items.children" :key="ind" :index="child.path"
                         :class="[defaultActive == child.path || (child.subpath && child.subpath.indexOf(defaultActive)) > -1 ? 'active' : '']">
-                        {{ child.title }}
+                        {{ child.meta.title }}
                     </el-menu-item>
                 </el-sub-menu>
             </template>

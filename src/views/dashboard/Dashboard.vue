@@ -4,6 +4,8 @@ import NotificationBar from './components/NotificationBar.vue'
 import EchartCard from './components/EchartCard.vue'
 import StatisticsModule from './components/StatisticsModule.vue'
 import LoginInfo from './components/LoginInfo.vue'
+import QuickEntry from './components/QuickEntry.vue'
+
 let adList = ref([
 	{ title: '这是一条可以滚动的新闻公告1', id: 0 },
 	{ title: '这是一条可以滚动的新闻公告2', id: 1 },
@@ -92,6 +94,7 @@ const updateTabData = (value) => {
 			</div>
 			<div class="right">
 				<login-info></login-info>
+				<quick-entry></quick-entry>
 			</div>
 		</div>
 	</div>
