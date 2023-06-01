@@ -16,11 +16,11 @@ watch(route, (val) => {
     <div class="mainSection-wrapper">
         <tab-page v-if="route.name != 'Dashboard'" />
         <bread-crumb v-if="route.name != 'Dashboard'" />
-        <div class="container">
+        <div id="container">
             <router-view v-slot="{ Component }">
-                <!-- <transition class="fade" name="fade" mode="out-in"> -->
-                <component :is="Component" :key="route.path" />
-                <!-- </transition> -->
+                <transition class="fade" name="fade" mode="out-in">
+                    <component :is="Component" :key="route.path" />
+                </transition>
             </router-view>
         </div>
     </div>
@@ -31,7 +31,7 @@ watch(route, (val) => {
     position: relative;
     overflow-x: hidden;
 
-    .container {
+    #container {
         height: calc(100% - 80px);
         padding: 20px;
         overflow-y: auto;
@@ -46,7 +46,7 @@ watch(route, (val) => {
     // 主内容区动画
     .fade-enter-from,
     .fade-leave-to {
-        transform: translateX(100px);
+        transform: translateX(50px);
         opacity: 0;
     }
 
@@ -58,7 +58,7 @@ watch(route, (val) => {
 
     .fade-enter-active,
     .fade-leave-active {
-        transition: 0.2s ease-out;
+        transition: 0.3s ease-out;
     }
 }
 </style>

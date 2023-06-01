@@ -94,7 +94,8 @@ let echartList = {
 
 
 }
-let erd = null;
+const erd = elementResizeDetectorMaker()
+
 
 //添加监听
 let addEventListener = (element) => {
@@ -111,12 +112,14 @@ let initChart = (key, element, option) => {
     chartConfig.chart = echarts.init(chartConfig.dom)
     option.value && chartConfig.chart.setOption(option.value)
     addEventListener(chartConfig.chart)
+
 }
 
 onMounted(() => {
     try {
         initChart('nightingale', 'nightingale', nightingaleOption)
         initChart('linechart', 'linechart', linechartOption)
+
     } catch (e) {
         console.log(e)
     }
