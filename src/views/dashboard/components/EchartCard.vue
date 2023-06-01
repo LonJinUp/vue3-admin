@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts/core'
 import {
     ToolboxComponent,
@@ -123,6 +123,10 @@ onMounted(() => {
     } catch (e) {
         console.log(e)
     }
+})
+
+onBeforeUnmount(() => {
+    erd && erd.uninstall(document.getElementById('container'))
 })
 
 </script>
