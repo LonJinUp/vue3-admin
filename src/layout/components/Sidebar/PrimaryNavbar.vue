@@ -2,20 +2,18 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const emit = defineEmits(['updateDalayClose', 'changePrimaryMenuItem'])
 const menuStore = useUserStore()
 const { menu } = storeToRefs(menuStore)
-let hoverIndex = ref(-1)
-let activeIndex = ref(0)
 let ivMouseEnter = ref(null)
 
 // 鼠标离开
 let handleMouseLeave = () => {
     clearTimeout(ivMouseEnter)
-    hoverIndex.value = -1
     emit('updateDalayClose', true)
 }
 
@@ -24,7 +22,6 @@ let handleMouseEnter = (item, index) => {
     if (!item) return;
     clearTimeout(ivMouseEnter)
     ivMouseEnter.value = setTimeout(() => {
-        hoverIndex.value = index
         emit('updateDalayClose', false)
         if (item.children && item.children.length) {
             emit('changePrimaryMenuItem', item)
@@ -37,13 +34,14 @@ let handleMouseEnter = (item, index) => {
 // 一级菜单点击事件
 let handleClick = (item, index) => {
     if (!item) return;
-    activeIndex.value = index
-    console.log(activeIndex, '=====')
     emit('changePrimaryMenuItem', item)
     router.push(item.redirect || item.path).catch((error) => {
+        console.log(item)
         console.log(error, '--handleClick')
     })
 }
+
+console.log(route, '====router')
 
 </script>
 <template>
@@ -54,8 +52,9 @@ let handleClick = (item, index) => {
             </div>
         </div>
         <ul class="menu-list" @mouseleave="handleMouseLeave">
-            <li :class="[activeIndex === index ? 'items active' : 'items']" v-for="(item, index) in menu" :key="index"
-                @mouseenter="handleMouseEnter(item, index)" @click="handleClick(item, index)">
+            <li v-for="(item, index) in menu" :key="index" @mouseenter="handleMouseEnter(item, index)"
+                @click="handleClick(item, index)"
+                :class="['items', (route.path == item.redirect || route.path == item.path) ? 'active' : '']">
                 <svg-icon class="icon" :width="26" :height="26" :iconName="item.meta.icon"></svg-icon>
                 <p>{{ item.meta.title }}</p>
             </li>

@@ -10,14 +10,18 @@ watch(route, (val) => {
     console.log(val)
 })
 
+
 </script>
 <template>
     <div class="mainSection-wrapper">
         <tab-page v-if="route.name != 'Dashboard'" />
         <bread-crumb v-if="route.name != 'Dashboard'" />
-        <div class="container" id="container">
-            <router-view :key="route.fullPath" :page-title.sync="pageTitle" :breadcrumb.sync="breadcrumb"
-                :removeTab.sync="removeTab" />
+        <div class="container">
+            <router-view v-slot="{ Component }">
+                <!-- <transition class="fade" name="fade" mode="out-in"> -->
+                <component :is="Component" :key="route.path" />
+                <!-- </transition> -->
+            </router-view>
         </div>
     </div>
 </template>
@@ -32,6 +36,29 @@ watch(route, (val) => {
         padding: 20px;
         overflow-y: auto;
         box-sizing: border-box;
+        position: relative;
+    }
+
+    .fade {
+        transition: 0.3s ease-out;
+    }
+
+    // 主内容区动画
+    .fade-enter-from,
+    .fade-leave-to {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    .fade-enter-to,
+    .fade-leave-from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: 0.2s ease-out;
     }
 }
 </style>

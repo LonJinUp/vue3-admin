@@ -40,10 +40,10 @@ const submitForm = async (formEl) => {
                 name: '超级管理员',
                 routes: [
                     {
-                        path: '/dashboard',
+                        path: '/dashboard/index',
                         name: 'Dashboard',
                         redirect: {
-                            path: '/dashboard'
+                            path: '/dashboard/index'
                         },
                         meta: { title: '首页', icon: 'home' }
                     },

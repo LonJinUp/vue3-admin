@@ -99,7 +99,7 @@ let erd = null;
 //添加监听
 let addEventListener = (element) => {
     !erd && (erd = elementResizeDetectorMaker())
-    erd.listenTo(document.getElementById("container"), function () {
+    erd.listenTo(document.getElementById('container'), function () {
         element.resize()
     })
 }
@@ -114,8 +114,12 @@ let initChart = (key, element, option) => {
 }
 
 onMounted(() => {
-    initChart('nightingale', 'nightingale', nightingaleOption)
-    initChart('linechart', 'linechart', linechartOption)
+    try {
+        initChart('nightingale', 'nightingale', nightingaleOption)
+        initChart('linechart', 'linechart', linechartOption)
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 </script>

@@ -26,7 +26,6 @@ let getDetail = item => {
 <template>
     <div class="notificationBar-wrapper flex-start">
         <el-icon color="#409EFC" class="icon">
-            <MessageBox />
         </el-icon>
         <el-carousel class="carousel" height="100%" :interval="interval" direction="vertical" autoplay>
             <el-carousel-item v-for="item in list" :key="item.id" @click="getDetail(item)">

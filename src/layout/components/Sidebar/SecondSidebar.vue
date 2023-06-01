@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import SecondaryNavbarItem from './SecondaryNavbarItem.vue'
 
 const props = defineProps(['primaryMenuItem'])
@@ -29,7 +29,6 @@ let defaultOpeneds = computed(() => {
         <el-menu ref="elMenu" class="secondary-navbar" background-color="#F9FAFB" text-color="#111827"
             :default-openeds="defaultOpeneds" router>
             <template v-if="primaryMenuItem !== null">
-                <!-- 一级菜单顶部 -->
                 <div class="caption">
                     <span>{{ primaryMenuItem.meta.title }}</span>
                 </div>

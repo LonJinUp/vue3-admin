@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
 defineProps({
     item: {
         type: Array,
@@ -7,42 +10,31 @@ defineProps({
     }
 })
 
-let defaultActive = ref('')
-
-const hasCurrent = (item) => {
-    let status = false
-    item.children.forEach((val) => {
-        if (val.path == defaultActive.value) {
-            status = true
-        }
-    })
-    return status
-}
 </script>
 <template>
     <div v-if="item">
-        <template v-for="(items, index) in item">
-            <template v-if="!items.children">
-                <el-menu-item :index="items.path" :key="index">
+        <template v-for="(item, index) in item">
+            <!-- 如果没有子菜单 -->
+            <template v-if="!item.children">
+                <el-menu-item :index="item.path" :key="index">
                     <template #title>
-                        <div
-                            :class="[defaultActive == items.path || (items.subpath && items.subpath.indexOf(defaultActive)) > -1 ? 'active' : '']">
-                            <svg-icon :iconName="items.icon" class="icon" />
-                            <span>{{ items.meta.title }}</span>
+                        <div :class="[route.path == item.path ? 'active' : '']">
+                            <svg-icon :iconName="item.icon" class="icon" />
+                            <span>{{ item.meta.title }}</span>
                         </div>
                     </template>
                 </el-menu-item>
             </template>
             <template v-else>
-                <el-sub-menu class="secindary" :index="items.path" :key="index">
+                <el-sub-menu class="secindary" :index="item.path" :key="index">
                     <template #title>
-                        <div :class="['menu-title flex-start', hasCurrent(items) ? 'active' : '']">
-                            <svg-icon :iconName="items.icon" class="icon" />
-                            <span>{{ items.meta.title }}</span>
+                        <div :class="['menu-title flex-start', route.path == item.path ? 'active' : '']">
+                            <svg-icon :iconName="item.icon" class="icon" />
+                            <span>{{ item.meta.title }}</span>
                         </div>
                     </template>
-                    <el-menu-item v-for="(child, ind) in items.children" :key="ind" :index="child.path"
-                        :class="[defaultActive == child.path || (child.subpath && child.subpath.indexOf(defaultActive)) > -1 ? 'active' : '']">
+                    <el-menu-item v-for="(child, ind) in item.children" :key="ind" :index="child.path"
+                        :class="[route.path == item.path ? 'active' : '']">
                         {{ child.meta.title }}
                     </el-menu-item>
                 </el-sub-menu>
