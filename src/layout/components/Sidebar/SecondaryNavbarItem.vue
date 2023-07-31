@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-
+import { useTabStore } from '@/store'
 const route = useRoute()
 
 defineProps({
@@ -10,13 +10,19 @@ defineProps({
     }
 })
 
+
+const clickEvent = (val) => {
+    const tab = useTabStore()
+    tab.addTabItem(val)
+}
+
 </script>
 <template>
     <div v-if="item">
         <template v-for="(item, index) in item">
             <!-- 如果没有子菜单 -->
             <template v-if="!item.children">
-                <el-menu-item :index="item.path" :key="index">
+                <el-menu-item :index="item.path" :key="index" @click="clickEvent(item)">
                     <template #title>
                         <div :class="[route.path == item.path ? 'active' : '']">
                             <svg-icon :iconName="item.icon" class="icon" />
@@ -33,8 +39,8 @@ defineProps({
                             <span>{{ item.meta.title }}</span>
                         </div>
                     </template>
-                    <el-menu-item v-for="(child, ind) in item.children" :key="ind" :index="child.path"
-                        :class="[route.path == item.path ? 'active' : '']">
+                    <el-menu-item v-for="(child, ind) in item.children" :key="ind" @click="clickEvent(child)"
+                        :index="child.path" :class="[route.path == item.path ? 'active' : '']">
                         {{ child.meta.title }}
                     </el-menu-item>
                 </el-sub-menu>

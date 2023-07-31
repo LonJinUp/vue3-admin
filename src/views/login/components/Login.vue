@@ -67,11 +67,7 @@ const submitForm = async (formEl) => {
                     },
                 ]
             })
-
             router.replace({ path: '/layout' })
-
-        } else {
-            console.log('error submit!', fields)
         }
     })
 }

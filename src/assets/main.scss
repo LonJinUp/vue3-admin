@@ -45,3 +45,30 @@ $text-color-secondary: #888B93;
 $text-color-secondary-50: #B8BABE;
 $text-color-placeholder: #CFD0D3;
 $text-color-placeholder-bold: #70747D;
+
+
+// font size
+.font-size-large{
+    font-size: 22px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    line-height: 30px;
+}
+
+.font-size-default{
+    font-size: 18px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    line-height: 26px;
+}
+
+.font-size-small{
+    font-size: 14px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    line-height: 20px;
+}
+
+.font-size-mini{
+    font-size: 12px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    line-height: 18px;
+}
+

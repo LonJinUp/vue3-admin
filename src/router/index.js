@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getStorage, clearAll } from 'lonjin-helper'
-import { useUserStore } from '../stores/userStore'
+import { useMenuStore } from '../store'
 import Layout from '../layout/index.vue'
 
 const NOTFOUND = {
@@ -49,7 +49,7 @@ const ELOGINSTATE = {
 }
 
 router.beforeEach((to, from, next) => {
-	const store = useUserStore()
+	const store = useMenuStore()
 	const menu = store.menu
 	let userinfo = getStorage('userinfo')
 	const token = getStorage('token') || ''
@@ -69,7 +69,7 @@ router.beforeEach((to, from, next) => {
 		// 已登录但是没有用户菜单
 		if (menu.length == 0) {
 			let newRoutes = generateRouter(userinfo.routes)
-			const layout = routes.find((item) => item.name == "layout")
+			const layout = routes.find((item) => item.name == 'layout')
 			layout.children = [...newRoutes]
 			store.setMenuList(newRoutes)
 			router.addRoute(layout)
@@ -78,7 +78,6 @@ router.beforeEach((to, from, next) => {
 		} else {
 			next()
 		}
-
 	}
 })
 

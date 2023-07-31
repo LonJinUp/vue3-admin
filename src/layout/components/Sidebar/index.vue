@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import SecondSidebar from './SecondSidebar.vue'
 import PrimaryNavbar from './PrimaryNavbar.vue'
-import { useUserStore } from '@/stores/userStore'
+import { useMenuStore } from '@/store'
 import { storeToRefs } from 'pinia'
 
 let dalayClose = ref(false)
@@ -10,7 +10,7 @@ let dalayCloseCallback = ref(null)
 let primaryMenuItemLength = ref(0)
 let primaryMenuItem = ref({})
 
-const menuStore = useUserStore()
+const menuStore = useMenuStore()
 const { menu } = storeToRefs(menuStore)
 
 watch(dalayClose, (val) => {

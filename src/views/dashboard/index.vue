@@ -11,74 +11,76 @@ let adList = ref([
 	{ title: '这是一条可以滚动的新闻公告2', id: 1 },
 	{ title: '这是一条可以滚动的新闻公告3', id: 2 },
 ])
+
+
 const merchantStatisticsList = ref({
-	activeName: 'untreated',
-	title: '这是标题',
+	tabActive: 'yesterday',
+	title: '数据预览',
 	list: [
 		{
 			sum: 0,
 			title: '开通商户数（个）',
-			// img: '/assets/images/WechatIMG80.jpeg',
 			key: 'mchtNum',
 		},
 		{
 			sum: 0,
 			title: '商户交易额（元）',
-			// img: '/assets/images/WechatIMG80.jpeg',
 			key: 'mchtTurnover',
 		},
 		{
 			sum: 0,
 			title: '激活收款设备数（台）',
-			// img: '/assets/images/WechatIMG80.jpeg',
 			key: 'activateDeviceNum',
 		},
 		{
 			sum: 0,
 			title: '激活收款设备数（台）',
-			// img: '/assets/images/WechatIMG80.jpeg',
 			key: 'activateDeviceNum',
 		},
 	],
 })
 const statisticsList = ref(
 	{
-		activeName: 'untreated',
-		title: '这是标题',
+		tabActive: 'yesterday',
+		title: '排行榜',
 		data: [
 			{
 				name: '按商户交易额',
-				data: [
-					{ iavName: "测试十三", mchtNum: 4, },
-					{ iavName: "测试十三", mchtNum: 4, }
+				unit: '万元',
+				list: [
+					{ name: "老王", quantity: 129, },
+					{ name: "老李", quantity: 430, },
+					{ name: "Tom", quantity: 440, },
+					{ name: "老刘", quantity: 477, },
+					{ name: "沸羊羊", quantity: 827, },
+					{ name: "懒洋洋", quantity: 492, }
 				],
 			},
 			{
-				name: '按商户交易额',
-				data: [
-					{ iavName: "测试十三", mchtNum: 4, },
-					{ iavName: "测试十三", mchtNum: 4, }
+				name: '发展商户数',
+				unit: '个',
+				list: [
+					{ name: "老李", quantity: 2833, },
+					{ name: "沸羊羊", quantity: 8253, }
 				],
 			},
 			{
 				name: '按激活收款设备数',
-				data: [
-					{ iavName: "测试十三", mchtNum: 4, },
-					{ iavName: "测试十三", mchtNum: 4, }
-				],
+				unit: '个',
+				list: [],
 			},
 		]
 	}
 )
 
 const handleRadioChange = (value) => {
-	console.log('左侧数据点击时间', value);
+	console.log('左侧数据点击时间', value)
 }
 const listRankingChange = (value) => {
-	console.log('列表日月点击事件', value);
+	console.log('列表日月点击事件', value)
 }
 const updateTabData = (value) => {
-	console.log('列表切换tab点击事件', value);
+	console.log('列表切换tab点击事件', value)
 }
 
 </script>

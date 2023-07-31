@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/userStore'
+import { useMenuStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 const emit = defineEmits(['updateDalayClose', 'changePrimaryMenuItem'])
-const menuStore = useUserStore()
+const menuStore = useMenuStore()
 const { menu } = storeToRefs(menuStore)
 let ivMouseEnter = ref(null)
 
@@ -18,7 +18,7 @@ let handleMouseLeave = () => {
 }
 
 // 鼠标移入
-let handleMouseEnter = (item, index) => {
+let handleMouseEnter = (item) => {
     if (!item) return;
     clearTimeout(ivMouseEnter)
     ivMouseEnter.value = setTimeout(() => {
@@ -32,16 +32,13 @@ let handleMouseEnter = (item, index) => {
 }
 
 // 一级菜单点击事件
-let handleClick = (item, index) => {
+let handleClick = (item) => {
     if (!item) return;
     emit('changePrimaryMenuItem', item)
     router.push(item.redirect || item.path).catch((error) => {
-        console.log(item)
         console.log(error, '--handleClick')
     })
 }
-
-console.log(route, '====router')
 
 </script>
 <template>

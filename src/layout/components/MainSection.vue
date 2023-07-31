@@ -1,14 +1,9 @@
 <script setup>
-import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import BreadCrumb from './BreadCrumb.vue'
 import TabPage from './TabPage.vue'
 
 const route = useRoute()
-
-watch(route, (val) => {
-    console.log(val)
-})
 
 
 </script>

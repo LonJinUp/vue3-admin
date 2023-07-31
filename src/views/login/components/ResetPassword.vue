@@ -40,7 +40,7 @@ const sendVerificationCode = () => {
         <div class="input-box">
             <div class="input flex-bt" v-for="item in config" :key="item.key">
                 <el-input v-model="formData[item.key]" :show-password="item.showPassword" :placeholder="item.placeholder" />
-                <el-button v-if="item.key == 'code'" type="primary" class="sendCode" @click="sendVerificationCode"
+                <el-button v-show="item.key == 'code'" type="primary" class="sendCode" @click="sendVerificationCode"
                     :disabled="countdown > 0">
                     {{ buttonText }}
                 </el-button>

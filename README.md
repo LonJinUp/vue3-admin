@@ -1,41 +1,28 @@
 # vue3-admin
 
-This template should help get you started developing with Vue 3 in Vite.
+> 基于vue3的后台管理系统
 
-## Recommended IDE Setup
+## 插件
+[vue3](https://cn.vuejs.org/)  
+[pinia](https://pinia.vuejs.org/zh/)  
+[vue-router](https://router.vuejs.org/zh/)  
+[pinia-plugin-persistedstate](pinia-plugin-persistedstate)  
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
+## 启动项目
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+初始化项目
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
+运行
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+## 打包
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

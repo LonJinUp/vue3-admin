@@ -1,8 +1,7 @@
 <template>
     <div class="tabpage-wrapper">
-        <el-tabs v-model="editableTabsValue" type="card" class="demo-tabs" closable @tab-remove="removeTab">
-            <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
-                <!-- {{ item.content }} -->
+        <el-tabs :model-value="tabActive" type="card" class="demo-tabs" closable @tab-remove="removeTab">
+            <el-tab-pane v-for="(item, index) in tab" :key="index" :label="item.meta.title" :name="index">
             </el-tab-pane>
         </el-tabs>
         <div class="dropmenu flex-center">
@@ -21,23 +20,16 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-let tabIndex = 1
-const editableTabsValue = ref('1')
-const editableTabs = ref([
-    {
-        title: 'Tab 1',
-        name: '1',
-        content: 'Tab 1 content',
-    },
-    {
-        title: 'Tab 2',
-        name: '2',
-        content: 'Tab 2 content',
-    },
-])
-// 关闭某个tab标签
-const removeTab = (targetName) => {
+import { useTabStore } from '@/store'
+import { storeToRefs } from 'pinia'
 
+const tabStore = useTabStore()
+const { tab, tabActive } = storeToRefs(tabStore)
+
+
+// 关闭某个tab标签
+const removeTab = (index) => {
+    tabStore.removeTabItem(index)
 }
 // 下拉菜单事件
 const onCommand = (command) => {

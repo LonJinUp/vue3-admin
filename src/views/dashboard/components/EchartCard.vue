@@ -100,7 +100,7 @@ const erd = elementResizeDetectorMaker()
 //添加监听
 let addEventListener = (element) => {
     !erd && (erd = elementResizeDetectorMaker())
-    erd.listenTo(document.getElementById('container'), function () {
+    erd.listenTo(document.getElementById('echart-wrapper'), function () {
         element.resize()
     })
 }
@@ -126,12 +126,13 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-    erd && erd.uninstall(document.getElementById('container'))
+    const element = document.getElementById('echart-wrapper')
+    erd.removeListener(element)
 })
 
 </script>
 <template>
-    <div class="echart-wrapper">
+    <div id="echart-wrapper">
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-card shadow="always">
@@ -149,7 +150,7 @@ onBeforeUnmount(() => {
     </div>
 </template>
 <style  lang="scss" scoped>
-.echart-wrapper {
+#echart-wrapper {
     margin: 20px auto;
     width: 100%;
 
