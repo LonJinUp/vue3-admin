@@ -34,6 +34,14 @@ let handleCurrentChange = (val) => {
         <el-table class="table" stripe :data="data" style="width: 100%">
             <el-table-column v-for="item in header" :min-width="item.minWidth" :fixed="item.fixed" label-class-name="black"
                 :key="item.prop" :label="item.label" :prop="item.prop">
+                <template #default="scope">
+                    <template v-if="item.operation">
+                        <el-button v-for="(o, key) in item.operation" :key="key" :style="item.style"
+                            @click="o.clickFun(scope.row)" type="text" size="mini">
+                            {{ o.name }}
+                        </el-button>
+                    </template>
+                </template>
             </el-table-column>
         </el-table>
         <div class="pagination flex-end">

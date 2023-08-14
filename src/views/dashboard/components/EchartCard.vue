@@ -90,7 +90,7 @@ let echartList = {
     },
 }
 
-const erd = elementResizeDetectorMaker()
+let erd = elementResizeDetectorMaker()
 
 //添加监听
 let addEventListener = (element) => {

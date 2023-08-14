@@ -36,6 +36,11 @@ let tableHeader = ref([
     { label: '法人姓名', prop: 'legalName', minWidth: '120' },
     { label: '代理商邀请码', prop: 'agentInviteCode', minWidth: '160' },
     { label: '创建时间', prop: 'createTime', minWidth: '200' },
+    {
+        label: '操作', prop: 'operate', minWidth: '200', fixed: 'right', operation: [
+            { name: '删除', clickFun: search }
+        ]
+    },
 ])
 
 
