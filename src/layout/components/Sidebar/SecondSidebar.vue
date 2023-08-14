@@ -14,13 +14,11 @@ let handleMouseLeave = () => {
 
 let defaultOpeneds = computed(() => {
     let arr = []
-    console.log(props.primaryMenuItem, '=====')
     if (props.primaryMenuItem && props.primaryMenuItem.children && props.primaryMenuItem.children.length) {
         props.primaryMenuItem.children.forEach(item => {
             arr.push(item.path)
         })
     }
-    console.log(arr, '=====')
     return arr
 })
 </script>

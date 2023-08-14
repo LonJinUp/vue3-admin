@@ -34,18 +34,18 @@ let routes = [
 		},
 		meta: { title: '首页' },
 		children: []
-	},
+	}
 ]
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
-	routes: routes,
+	routes: routes
 })
 
 // 需要过滤掉的路由
 const filterRoutes = []
 const ELOGINSTATE = {
-	'ISLOGIN': 'login'
+	ISLOGIN: 'login'
 }
 
 router.beforeEach((to, from, next) => {
@@ -81,27 +81,24 @@ router.beforeEach((to, from, next) => {
 	}
 })
 
-
 function generateRouter(userRouters) {
-	const modules = import.meta.glob("../views/**/**.vue")
+	const modules = import.meta.glob('../views/**/**.vue');
 	let newRouters = userRouters.map((router) => {
-		const isParent = router.children && router.children.length || 0
+		const isParent = (router.children && router.children.length) || 0
 		let routes = {
 			path: router.path,
 			name: router.name,
-			meta: router.meta,
+			meta: router.meta
 		}
 		if (isParent) {
 			routes.redirect = router.children[0].path
 		} else {
-			routes.component = modules[
-				/* @vite-ignore */ `../views${router.path}.vue`
-			]
+			routes.component = modules[/* @vite-ignore */ `../views${router.path}.vue`]
 		}
 		routes && router.children && (routes.children = generateRouter(router.children))
 		return routes
-	})
+	});
 	return newRouters
-};
+}
 
 export default router

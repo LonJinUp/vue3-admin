@@ -1,3 +1,36 @@
+<script setup>
+import { ref } from 'vue'
+import { useTabStore } from '@/store'
+import { storeToRefs } from 'pinia'
+const tabStore = useTabStore()
+const { tab, tabActive } = storeToRefs(tabStore)
+
+
+/**
+ * 关闭某个tab标签
+ * @param {Number} index 
+ */
+const removeTab = (index) => {
+    tabStore.removeTabItem(index)
+}
+
+const dropMenu = [
+    { name: '关闭当前标签页', type: 'closeCurrentTab' },
+    { name: '关闭其它标签页', type: 'closeOtherTabs' },
+    { name: '关闭全部标签页', type: 'closeAllTabs' },
+]
+
+const onDropItemClick = (item, index) => {
+    if (item.type === 'closeCurrentTab') {
+        tabStore.removeTabItem(index)
+    } else if (item.type === 'closeOtherTabs') {
+        tabStore.removeOtherTabItem(index)
+    } else if (item.type === 'closeAllTabs') {
+        tabStore.clearTab()
+    }
+}
+
+</script>
 <template>
     <div class="tabpage-wrapper">
         <el-tabs :model-value="tabActive" type="card" class="demo-tabs" closable @tab-remove="removeTab">
@@ -5,37 +38,22 @@
             </el-tab-pane>
         </el-tabs>
         <div class="dropmenu flex-center">
-            <el-dropdown @command="onCommand">
-                <div class="more-menu"></div>
+            <el-dropdown>
+                <div class="more-menu">
+
+                </div>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item command="closeCurrentTab">关闭当前标签页</el-dropdown-item>
-                        <el-dropdown-item command="closeOtherTabs">关闭其它标签页</el-dropdown-item>
-                        <el-dropdown-item command="closeAllTabs">关闭全部标签页</el-dropdown-item>
+                        <el-dropdown-item v-for="item in dropMenu" :key="item.type" :command="item.type"
+                            @click="onDropItemClick(item, tabActive)">
+                            {{ item.name }}
+                        </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
         </div>
     </div>
 </template>
-<script setup>
-import { ref } from 'vue'
-import { useTabStore } from '@/store'
-import { storeToRefs } from 'pinia'
-
-const tabStore = useTabStore()
-const { tab, tabActive } = storeToRefs(tabStore)
-
-
-// 关闭某个tab标签
-const removeTab = (index) => {
-    tabStore.removeTabItem(index)
-}
-// 下拉菜单事件
-const onCommand = (command) => {
-    console.log(command, '===command')
-}
-</script>
 <style lang="scss" scoped>
 .tabpage-wrapper {
     position: relative;
@@ -62,8 +80,17 @@ const onCommand = (command) => {
         }
     }
 }
-
-:deep(.el-tabs__content) {
+</style>
+<style scoped>
+.tabpage-wrapper :deep(.el-tabs__content) {
     display: none;
+}
+
+.tabpage-wrapper :deep(.el-tabs__header) {
+    margin: 0;
+}
+
+.tabpage-wrapper :deep(.el-tabs__item.is-active) {
+    background: #ffffff;
 }
 </style>

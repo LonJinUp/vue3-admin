@@ -27,11 +27,12 @@ const route = useRoute()
     overflow-x: hidden;
 
     #container {
-        height: calc(100% - 80px);
+        height: calc(100% - 88px);
         padding: 20px;
         overflow-y: auto;
         box-sizing: border-box;
         position: relative;
+        background: #ffffff;
     }
 
     .fade {

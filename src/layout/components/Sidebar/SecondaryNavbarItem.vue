@@ -10,7 +10,6 @@ defineProps({
     }
 })
 
-
 const clickEvent = (val) => {
     const tab = useTabStore()
     tab.addTabItem(val)

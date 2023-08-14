@@ -6,12 +6,13 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "dependencies": {
     "echarts": "^5.4.0",
     "element-plus": "^2.2.17",
     "element-resize-detector": "^1.2.4",
+    "lodash": "^4.17.21",
     "lonjin-helper": "^1.0.6",
     "pinia": "^2.0.21",
     "pinia-plugin-persistedstate": "^3.2.0",
@@ -23,14 +24,17 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.0.2",
-    "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.17.0",
     "jsdom": "^20.0.0",
-    "prettier": "^2.7.1",
+    "prettier": "^3.0.1",
     "sass": "^1.55.0",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.8",
     "vite": "^3.0.9",
+    "vite-plugin-imagemin": "^0.6.1",
     "vitest": "^0.23.0"
   }
 }

@@ -14,4 +14,3 @@ app.config.globalProperties.$setStorage = setStorage
 app.config.globalProperties.$getStorage = getStorage
 
 app.component('svg-icon', SvgIcon)
-

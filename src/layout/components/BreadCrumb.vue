@@ -15,11 +15,9 @@ watch(route, (val) => {
     breadcrumbList.value = breadcrumb(val.matched)
 }, { deep: true, immediate: true })
 
-
-
 </script>
 <template>
-    <div class="bread-crumb-wrapper">
+    <div class="bread-crumb-wrapper flex-start">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index" :to="{ path: item.path }">
                 {{ item.meta.title }}
@@ -29,7 +27,7 @@ watch(route, (val) => {
 </template>
 <style lang="scss" scoped>
 .bread-crumb-wrapper {
-    height: 32px;
+    height: 42px;
     background-color: #fff;
     box-shadow: inset 0px -1px 0px 0px rgba(229, 231, 235, 1);
     padding: 0 20px;

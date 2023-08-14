@@ -6,7 +6,8 @@
 [vue3](https://cn.vuejs.org/)  
 [pinia](https://pinia.vuejs.org/zh/)  
 [vue-router](https://router.vuejs.org/zh/)  
-[pinia-plugin-persistedstate](pinia-plugin-persistedstate)  
+[pinia-plugin-persistedstate](pinia-plugin-persistedstate) 
+[lodash](https://www.lodashjs.com/)
 
 
 ## 启动项目

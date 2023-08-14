@@ -11,14 +11,19 @@ const menuStore = useMenuStore()
 const { menu } = storeToRefs(menuStore)
 let ivMouseEnter = ref(null)
 
-// 鼠标离开
-let handleMouseLeave = () => {
+/**
+ * 鼠标离开
+ */
+const handleMouseLeave = () => {
     clearTimeout(ivMouseEnter)
     emit('updateDalayClose', true)
 }
 
-// 鼠标移入
-let handleMouseEnter = (item) => {
+/**
+ * 鼠标移入
+ * @param {Object} item 
+ */
+const handleMouseEnter = (item) => {
     if (!item) return;
     clearTimeout(ivMouseEnter)
     ivMouseEnter.value = setTimeout(() => {
@@ -31,14 +36,31 @@ let handleMouseEnter = (item) => {
     }, 100)
 }
 
-// 一级菜单点击事件
-let handleClick = (item) => {
+/**
+ * 一级菜单点击事件
+ * @param {Object} item 
+ */
+const handleClick = (item) => {
     if (!item) return;
     emit('changePrimaryMenuItem', item)
     router.push(item.redirect || item.path).catch((error) => {
         console.log(error, '--handleClick')
     })
 }
+
+/**
+ * 查找当前路由是否在当前menuChild中
+ * @param {Object} item 
+ */
+const findPath = (item) => {
+    if (route.path == (item.redirect || item.path)) {
+        return true
+    }
+    if (item.children && item.children.length) {
+        return item.children.some(i => i.path == route.path)
+    }
+}
+
 
 </script>
 <template>
@@ -50,8 +72,7 @@ let handleClick = (item) => {
         </div>
         <ul class="menu-list" @mouseleave="handleMouseLeave">
             <li v-for="(item, index) in menu" :key="index" @mouseenter="handleMouseEnter(item, index)"
-                @click="handleClick(item, index)"
-                :class="['items', (route.path == item.redirect || route.path == item.path) ? 'active' : '']">
+                @click="handleClick(item, index)" :class="['items', findPath(item) ? 'active' : '']">
                 <svg-icon class="icon" :width="26" :height="26" :iconName="item.meta.icon"></svg-icon>
                 <p>{{ item.meta.title }}</p>
             </li>
