@@ -1,9 +1,9 @@
-<template #default="scope">
+<template #svgScope="scope">
 	<svg :class="svgClass" v-bind="$attrs" :style="{ width, height }">
 		<use :href="svgName"></use>
 	</svg>
 </template>
-  
+
 <script setup>
 import { computed } from 'vue'
 const props = defineProps({
@@ -24,7 +24,7 @@ const props = defineProps({
 	height: {
 		type: Number || String,
 		default: 16
-	},
+	}
 })
 
 const svgName = computed(() => `#icon-${props.iconName}`)
@@ -32,10 +32,10 @@ const svgClass = computed(() => {
 	if (props.name) {
 		return `svg-icon icon-${props.iconName}`
 	}
-	return `svg-icon`
+	return 'svg-icon'
 })
 </script>
-  
+
 <style>
 .svg-icon {
 	width: 16px;

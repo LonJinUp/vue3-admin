@@ -1,40 +1,43 @@
 {
-  "name": "vue3-admin",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 4173",
-    "test:unit": "vitest --environment jsdom",
-    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
-  },
-  "dependencies": {
-    "echarts": "^5.4.0",
-    "element-plus": "^2.2.17",
-    "element-resize-detector": "^1.2.4",
-    "lodash": "^4.17.21",
-    "lonjin-helper": "^1.0.6",
-    "pinia": "^2.0.21",
-    "pinia-plugin-persistedstate": "^3.2.0",
-    "vue": "^3.2.38",
-    "vue-router": "^4.1.5"
-  },
-  "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
-    "@vitejs/plugin-vue": "^3.0.3",
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/test-utils": "^2.0.2",
-    "eslint": "^8.47.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "jsdom": "^20.0.0",
-    "prettier": "^3.0.1",
-    "sass": "^1.55.0",
-    "unplugin-auto-import": "^0.11.2",
-    "unplugin-vue-components": "^0.22.8",
-    "vite": "^3.0.9",
-    "vite-plugin-imagemin": "^0.6.1",
-    "vitest": "^0.23.0"
-  }
+	"name": "vue3-admin",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview --port 4173",
+		"test:unit": "vitest --environment jsdom",
+		"lint:script": "eslint --ext .js,.jsx,.vue --fix --quiet ./"
+	},
+	"dependencies": {
+		"echarts": "^5.4.0",
+		"element-plus": "^2.2.17",
+		"element-resize-detector": "^1.2.4",
+		"lodash": "^4.17.21",
+		"lonjin-helper": "^1.0.6",
+		"pinia": "^2.0.21",
+		"pinia-plugin-persistedstate": "^3.2.0",
+		"vite-plugin-prettier": "^0.0.5",
+		"vue": "^3.2.38",
+		"vue-router": "^4.1.5"
+	},
+	"devDependencies": {
+		"@rushstack/eslint-patch": "^1.1.4",
+		"@vitejs/plugin-vue": "^3.0.3",
+		"@vue/eslint-config-prettier": "^7.0.0",
+		"@vue/test-utils": "^2.0.2",
+		"eslint": "^8.47.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.0",
+		"eslint-plugin-vue": "^9.17.0",
+		"jsdom": "^20.0.0",
+		"prettier": "^3.0.1",
+		"sass": "^1.55.0",
+		"stylelint": "^15.10.3",
+		"unplugin-auto-import": "^0.11.2",
+		"unplugin-vue-components": "^0.22.8",
+		"vite": "^3.0.9",
+		"vite-plugin-imagemin": "^0.6.1",
+		"vitest": "^0.23.0",
+		"vue-eslint-parser": "^9.3.1"
+	}
 }

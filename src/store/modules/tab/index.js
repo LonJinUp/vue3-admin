@@ -7,15 +7,15 @@ export const useTabStore = defineStore('tab-store', {
 		return {
 			tab: [],
 			tabActive: 0
-		};
+		}
 	},
 	actions: {
 		/**
 		 * 初始化tab
 		 */
 		initTab() {
-			this.tab = [];
-			this.tabActive = 0;
+			this.tab = []
+			this.tabActive = 0
 		},
 
 		/**
@@ -23,12 +23,12 @@ export const useTabStore = defineStore('tab-store', {
 		 * @param {Object} route
 		 */
 		addTabItem(route) {
-			const tabActive = findTab(this.tab, route.path);
+			const tabActive = findTab(this.tab, route.path)
 			if (tabActive != null) {
-				this.tabActive = tabActive;
+				this.tabActive = tabActive
 			} else {
-				this.tab.push(route);
-				this.tabActive = this.tab.length - 1;
+				this.tab.push(route)
+				this.tabActive = this.tab.length - 1
 			}
 		},
 
@@ -37,16 +37,16 @@ export const useTabStore = defineStore('tab-store', {
 		 * @param {*} targetIndex 目标路由
 		 */
 		removeTabItem(targetIndex) {
-			const tab = removeTabItem(this.tab, targetIndex, 'current');
+			const tab = removeTabItem(this.tab, targetIndex, 'current')
 			// 如果全部删除， 回到首页
 			if (tab.length === 0) {
-				this.initTab();
-				router.replace({ path: '/layout' });
+				this.initTab()
+				router.replace({ path: '/layout' })
 			} else {
-				this.tabActive = targetIndex === 0 ? 0 : targetIndex - 1;
-				this.tab = tab;
-				const { path, params = {}, query = {} } = this.tab[this.tabActive];
-				router.push(path, params, query);
+				this.tabActive = targetIndex === 0 ? 0 : targetIndex - 1
+				this.tab = tab
+				const { path, params = {}, query = {} } = this.tab[this.tabActive]
+				router.push(path, params, query)
 			}
 		},
 
@@ -56,18 +56,18 @@ export const useTabStore = defineStore('tab-store', {
 		 */
 		removeOtherTabItem(targetIndex) {
 			if (this.tab.length === 1) {
-				return false;
+				return false
 			}
-			const tab = removeTabItem(this.tab, targetIndex, 'other');
-			this.tabActive = targetIndex - 1;
-			this.tab = tab;
-			const { path, params = {}, query = {} } = this.tab[this.tabActive];
-			router.push(path, params, query);
+			const tab = removeTabItem(this.tab, targetIndex, 'other')
+			this.tabActive = targetIndex - 1
+			this.tab = tab
+			const { path, params = {}, query = {} } = this.tab[this.tabActive]
+			router.push(path, params, query)
 		},
 
 		clearTab() {
-			this.initTab();
-			router.replace({ path: '/layout' });
+			this.initTab()
+			router.replace({ path: '/layout' })
 		}
 	},
 	persist: {

@@ -1,74 +1,79 @@
-@import "./base.scss";
+@import './base.scss';
 
-.flex-start{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.flex-start {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 }
-.flex-end{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.flex-end {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
-.flex-bt{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.flex-bt {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
-.flex-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.pointer{
-    cursor: pointer;
+.pointer {
+	cursor: pointer;
 }
 
 // 超出部分隐藏
 @mixin textOverflow($clamp) {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box; 
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: $clamp; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $clamp;
 }
 
 //主题颜色
-$lonjin-color-primary: #456CE6;
-$lonjin-color-primary-30: #ECF0FC;
-
+$lonjin-color-primary: #456ce6;
+$lonjin-color-primary-30: #ecf0fc;
 
 // 文字颜色
 $text-color-primary: #111827;
-$text-color-secondary: #888B93;
-$text-color-secondary-50: #B8BABE;
-$text-color-placeholder: #CFD0D3;
-$text-color-placeholder-bold: #70747D;
-
+$text-color-secondary: #888b93;
+$text-color-secondary-50: #b8babe;
+$text-color-placeholder: #cfd0d3;
+$text-color-placeholder-bold: #70747d;
 
 // font size
-.font-size-large{
-    font-size: 22px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    line-height: 30px;
+.font-size-large {
+	font-size: 22px;
+	font-family:
+		PingFangSC-Medium,
+		PingFang SC;
+	line-height: 30px;
 }
 
-.font-size-default{
-    font-size: 18px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    line-height: 26px;
+.font-size-default {
+	font-size: 18px;
+	font-family:
+		PingFangSC-Medium,
+		PingFang SC;
+	line-height: 26px;
 }
 
-.font-size-small{
-    font-size: 14px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    line-height: 20px;
+.font-size-small {
+	font-size: 14px;
+	font-family:
+		PingFangSC-Medium,
+		PingFang SC;
+	line-height: 20px;
 }
 
-.font-size-mini{
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    line-height: 18px;
+.font-size-mini {
+	font-size: 12px;
+	font-family:
+		PingFangSC-Medium,
+		PingFang SC;
+	line-height: 18px;
 }
-

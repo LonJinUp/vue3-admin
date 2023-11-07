@@ -1,16 +1,15 @@
 <script setup>
-
 const emit = defineEmits(['handleRadioChange', 'listRankingChange', 'updateTabData'])
 
 const props = defineProps({
 	merchantStatisticsList: {
 		type: Object,
-		default: true,
+		default: () => {}
 	},
 	statisticsList: {
 		type: Object,
-		default: true,
-	},
+		default: () => {}
+	}
 })
 
 const handleRadioChange = (value) => {
@@ -22,9 +21,8 @@ const listRankingChange = (value) => {
 }
 
 const updateTabData = (value) => {
-	emit('updateTabData', value);
+	emit('updateTabData', value)
 }
-
 </script>
 
 <template>
@@ -35,14 +33,21 @@ const updateTabData = (value) => {
 					<div class="top flex-bt">
 						<div class="title">{{ merchantStatisticsList.title }}</div>
 						<div class="button-box">
-							<el-radio-group v-model="merchantStatisticsList.tabActive" @change="handleRadioChange">
+							<el-radio-group
+								v-model="merchantStatisticsList.tabActive"
+								@change="handleRadioChange"
+							>
 								<el-radio-button label="yesterday">昨日</el-radio-button>
 								<el-radio-button label="month">本月</el-radio-button>
 							</el-radio-group>
 						</div>
 					</div>
 					<div class="bottom">
-						<div v-for="(item, index) in merchantStatisticsList.list" :key="index" class="items">
+						<div
+							v-for="(item, index) in merchantStatisticsList.list"
+							:key="index"
+							class="items"
+						>
 							<div class="sum">{{ item.sum }}</div>
 							<div class="title">{{ item.title }}</div>
 						</div>
@@ -55,7 +60,10 @@ const updateTabData = (value) => {
 					<div class="top flex-bt">
 						<div class="title">{{ statisticsList.title }}</div>
 						<div class="button-box">
-							<el-radio-group v-model="statisticsList.tabActive" @change="listRankingChange">
+							<el-radio-group
+								v-model="statisticsList.tabActive"
+								@change="listRankingChange"
+							>
 								<el-radio-button label="yesterday">昨日</el-radio-button>
 								<el-radio-button label="month">本月</el-radio-button>
 							</el-radio-group>
@@ -63,9 +71,17 @@ const updateTabData = (value) => {
 					</div>
 					<div class="bottom">
 						<el-tabs @tab-click="updateTabData">
-							<el-tab-pane v-for="(tab, index) in statisticsList.data" :key="index" :label="tab.name">
+							<el-tab-pane
+								v-for="(tab, index) in statisticsList.data"
+								:key="index"
+								:label="tab.name"
+							>
 								<div class="table-box">
-									<div class="items flex-bt" v-for="(item, index) in tab.list" :key="index">
+									<div
+										class="items flex-bt"
+										v-for="(item, index) in tab.list"
+										:key="index"
+									>
 										<div class="left flex-start">
 											<span class="num">{{ index + 1 }}</span>
 											<span class="name">{{ item.name }}</span>
@@ -74,7 +90,11 @@ const updateTabData = (value) => {
 											{{ item.quantity }} {{ tab.unit }}
 										</div>
 									</div>
-									<el-empty v-if="tab.list.length == 0" :image-size="30" description="暂无数据" />
+									<el-empty
+										v-if="tab.list.length == 0"
+										:image-size="30"
+										description="暂无数据"
+									/>
 								</div>
 							</el-tab-pane>
 						</el-tabs>
@@ -98,7 +118,9 @@ const updateTabData = (value) => {
 
 			.title {
 				font-size: 14px;
-				font-family: PingFangSC-Medium, PingFang SC;
+				font-family:
+					PingFangSC-Medium,
+					PingFang SC;
 				font-weight: 600;
 				color: #111827;
 				line-height: 20px;
@@ -119,7 +141,6 @@ const updateTabData = (value) => {
 			height: 100%;
 			position: relative;
 
-
 			.bottom {
 				display: flex;
 				margin-left: 20px;
@@ -135,7 +156,9 @@ const updateTabData = (value) => {
 
 					.sum {
 						font-size: 18px;
-						font-family: PingFangSC-Medium, PingFang SC;
+						font-family:
+							PingFangSC-Medium,
+							PingFang SC;
 						font-weight: 500;
 						color: #456ce6;
 						line-height: 26px;
@@ -143,7 +166,9 @@ const updateTabData = (value) => {
 
 					.title {
 						font-size: 12px;
-						font-family: PingFangSC-Regular, PingFang SC;
+						font-family:
+							PingFangSC-Regular,
+							PingFang SC;
 						font-weight: 400;
 						color: #111827;
 						line-height: 18px;
@@ -177,7 +202,6 @@ const updateTabData = (value) => {
 				padding-right: 20px;
 				padding-left: 20px;
 
-
 				.table-box {
 					width: 100%;
 					max-height: 140px;
@@ -189,7 +213,6 @@ const updateTabData = (value) => {
 						height: 30px;
 
 						&:nth-child(1) {
-
 							.left .num {
 								background: #456ce6;
 								color: #ffffff;
@@ -211,7 +234,8 @@ const updateTabData = (value) => {
 						}
 
 						.left {
-							.name {}
+							.name {
+							}
 
 							.num {
 								width: 16px;
@@ -222,13 +246,14 @@ const updateTabData = (value) => {
 								text-align: center;
 								line-height: 16px;
 								font-weight: 600;
-								font-family: PingFangSC-Medium, PingFang SC;
+								font-family:
+									PingFangSC-Medium,
+									PingFang SC;
 								font-size: 12px;
 								margin-right: 12px;
 							}
 						}
 					}
-
 				}
 			}
 		}

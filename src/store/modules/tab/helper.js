@@ -7,10 +7,10 @@
 export function findTab(tab, path) {
 	return tab.reduce((activeIndex, item, index) => {
 		if (path === item.path) {
-			activeIndex = index;
+			activeIndex = index
 		}
-		return activeIndex;
-	}, null);
+		return activeIndex
+	}, null)
 }
 
 /**
@@ -23,6 +23,6 @@ export function findTab(tab, path) {
  */
 export function removeTabItem(tab, targetIndex, type = 'current') {
 	return tab.filter((item, index) => {
-		return type === 'current' ? targetIndex !== index : targetIndex === index;
+		return type === 'current' ? targetIndex !== index : targetIndex === index
 	})
 }

@@ -30,6 +30,6 @@ export function configImageminPlugin() {
 				}
 			]
 		}
-	});
+	})
 	return plugin
 }

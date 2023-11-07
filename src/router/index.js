@@ -43,7 +43,6 @@ const router = createRouter({
 })
 
 // 需要过滤掉的路由
-const filterRoutes = []
 const ELOGINSTATE = {
 	ISLOGIN: 'login'
 }
@@ -53,7 +52,6 @@ router.beforeEach((to, from, next) => {
 	const menu = store.menu
 	let userinfo = getStorage('userinfo')
 	const token = getStorage('token') || ''
-	const currentRouters = router.options.routes
 
 	// 未登录 去的是登录页面
 	if (!token && to.name === ELOGINSTATE.ISLOGIN) {
@@ -82,7 +80,7 @@ router.beforeEach((to, from, next) => {
 })
 
 function generateRouter(userRouters) {
-	const modules = import.meta.glob('../views/**/**.vue');
+	const modules = import.meta.glob('../views/**/**.vue')
 	let newRouters = userRouters.map((router) => {
 		const isParent = (router.children && router.children.length) || 0
 		let routes = {
@@ -97,7 +95,7 @@ function generateRouter(userRouters) {
 		}
 		routes && router.children && (routes.children = generateRouter(router.children))
 		return routes
-	});
+	})
 	return newRouters
 }
 

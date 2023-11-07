@@ -2,155 +2,165 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts/core'
 import {
-    ToolboxComponent,
-    LegendComponent,
-    DatasetComponent,
-    TooltipComponent,
-    GridComponent,
-    TitleComponent
-
+	ToolboxComponent,
+	LegendComponent,
+	DatasetComponent,
+	TooltipComponent,
+	GridComponent,
+	TitleComponent
 } from 'echarts/components'
 import { PieChart, BarChart, LineChart } from 'echarts/charts'
 import { LabelLayout } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
-import { UniversalTransition } from 'echarts/features';
+import { UniversalTransition } from 'echarts/features'
 import elementResizeDetectorMaker from 'element-resize-detector'
 
 echarts.use([
-    ToolboxComponent,
-    LegendComponent,
-    PieChart,
-    CanvasRenderer,
-    LabelLayout,
-    DatasetComponent,
-    TooltipComponent,
-    GridComponent,
-    BarChart,
-    LineChart,
-    TitleComponent,
-    UniversalTransition
+	ToolboxComponent,
+	LegendComponent,
+	PieChart,
+	CanvasRenderer,
+	LabelLayout,
+	DatasetComponent,
+	TooltipComponent,
+	GridComponent,
+	BarChart,
+	LineChart,
+	TitleComponent,
+	UniversalTransition
 ])
 
 let nightingaleOption = ref({
-    legend: {
-        top: 'bottom'
-    },
-    series: [
-        {
-            name: 'Nightingale Chart',
-            type: 'pie',
-            radius: [50, 100],
-            center: ['50%', '50%'],
-            roseType: 'area',
-            itemStyle: {
-                borderRadius: 8
-            },
-            data: [
-                { value: 40, name: '电脑' },
-                { value: 38, name: '季度' },
-                { value: 32, name: '手机' },
-                { value: 30, name: 'rose 4' },
-                { value: 28, name: 'rose 5' },
-                { value: 26, name: 'rose 6' },
-                { value: 22, name: 'rose 7' },
-                { value: 18, name: 'rose 8' }
-            ]
-        }
-    ]
+	legend: {
+		top: 'bottom'
+	},
+	series: [
+		{
+			name: 'Nightingale Chart',
+			type: 'pie',
+			radius: [50, 100],
+			center: ['50%', '50%'],
+			roseType: 'area',
+			itemStyle: {
+				borderRadius: 8
+			},
+			data: [
+				{ value: 40, name: '电脑' },
+				{ value: 38, name: '季度' },
+				{ value: 32, name: '手机' },
+				{ value: 30, name: 'rose 4' },
+				{ value: 28, name: 'rose 5' },
+				{ value: 26, name: 'rose 6' },
+				{ value: 22, name: 'rose 7' },
+				{ value: 18, name: 'rose 8' }
+			]
+		}
+	]
 })
 
 let linechartOption = ref({
-    xAxis: {
-        type: 'category',
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-    },
-    yAxis: {
-        type: 'value',
-        name: '销售额（万）元'
-    },
-    series: [
-        {
-            data: [120, 200, 150, 80, 70, 110, 130, 120, 200, 150, 80, 70, 110,],
-            type: 'bar',
-            itemStyle: {
-                color: '#7d98ee'
-            }
-        }
-    ]
+	xAxis: {
+		type: 'category',
+		data: [
+			'1月',
+			'2月',
+			'3月',
+			'4月',
+			'5月',
+			'6月',
+			'7月',
+			'8月',
+			'9月',
+			'10月',
+			'11月',
+			'12月'
+		]
+	},
+	yAxis: {
+		type: 'value',
+		name: '销售额（万）元'
+	},
+	series: [
+		{
+			data: [120, 200, 150, 80, 70, 110, 130, 120, 200, 150, 80, 70, 110],
+			type: 'bar',
+			itemStyle: {
+				color: '#7d98ee'
+			}
+		}
+	]
 })
 
 let echartList = {
-    nightingale: {
-        dom: null,
-        chart: null
-    },
-    linechart: {
-        dom: null,
-        chart: null
-    },
+	nightingale: {
+		dom: null,
+		chart: null
+	},
+	linechart: {
+		dom: null,
+		chart: null
+	}
 }
 
 let erd = elementResizeDetectorMaker()
 
 //添加监听
 let addEventListener = (element) => {
-    !erd && (erd = elementResizeDetectorMaker())
-    erd.listenTo(document.getElementById('echart-wrapper'), function () {
-        element.resize()
-    })
+	!erd && (erd = elementResizeDetectorMaker())
+	erd.listenTo(document.getElementById('echart-wrapper'), function () {
+		element.resize()
+	})
 }
 
 //初始化
 let initChart = (key, element, option) => {
-    let chartConfig = echartList[key]
-    chartConfig.dom = document.getElementById(element)
-    chartConfig.chart = echarts.init(chartConfig.dom)
-    option.value && chartConfig.chart.setOption(option.value)
-    addEventListener(chartConfig.chart)
-
+	let chartConfig = echartList[key]
+	chartConfig.dom = document.getElementById(element)
+	chartConfig.chart = echarts.init(chartConfig.dom)
+	option.value && chartConfig.chart.setOption(option.value)
+	addEventListener(chartConfig.chart)
 }
 
 onMounted(() => {
-    try {
-        initChart('nightingale', 'nightingale', nightingaleOption)
-        initChart('linechart', 'linechart', linechartOption)
-    } catch (e) {
-        console.log(e)
-    }
+	try {
+		initChart('nightingale', 'nightingale', nightingaleOption)
+		initChart('linechart', 'linechart', linechartOption)
+	} catch (e) {
+		console.log(e)
+	}
 })
 
 onBeforeUnmount(() => {
-    const element = document.getElementById('echart-wrapper')
-    erd.removeListener(element)
+	const element = document.getElementById('echart-wrapper')
+	erd.removeListener(element)
 })
-
 </script>
 <template>
-    <div id="echart-wrapper">
-        <el-row :gutter="20">
-            <el-col :span="12">
-                <el-card shadow="always">
-                    <h3 class="title">年度销售数据</h3>
-                    <div id="linechart" style="width:100%;height:400px"></div>
-                </el-card>
-            </el-col>
-            <el-col :span="12">
-                <el-card shadow="always">
-                    <h3 class="title">销售产品占比</h3>
-                    <div id="nightingale" style="width:100%;height:400px"></div>
-                </el-card>
-            </el-col>
-        </el-row>
-    </div>
+	<div id="echart-wrapper">
+		<el-row :gutter="20">
+			<el-col :span="12">
+				<el-card shadow="always">
+					<h3 class="title">年度销售数据</h3>
+					<div id="linechart" style="width: 100%; height: 400px"></div>
+				</el-card>
+			</el-col>
+			<el-col :span="12">
+				<el-card shadow="always">
+					<h3 class="title">销售产品占比</h3>
+					<div id="nightingale" style="width: 100%; height: 400px"></div>
+				</el-card>
+			</el-col>
+		</el-row>
+	</div>
 </template>
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 #echart-wrapper {
-    margin: 20px auto;
-    width: 100%;
+	margin: 20px auto;
+	width: 100%;
 
-    .title {
-        padding: 0px;
-        margin: 0px;
-    }
+	.title {
+		padding: 0px;
+		margin: 0px;
+	}
 }
 </style>
