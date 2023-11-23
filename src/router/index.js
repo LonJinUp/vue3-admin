@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getStorage, clearAll } from 'lonjin-helper'
+import { getStorage, clearStorage } from 'lonjin-helper'
 import { useMenuStore } from '../store'
 import Layout from '../layout/index.vue'
 
@@ -55,7 +55,7 @@ router.beforeEach((to, from, next) => {
 
 	// 未登录 去的是登录页面
 	if (!token && to.name === ELOGINSTATE.ISLOGIN) {
-		clearAll()
+		clearStorage()
 		next()
 	} else if (!token && to.name !== ELOGINSTATE.ISLOGIN) {
 		// 未登录 去的不是登录页面
@@ -79,6 +79,11 @@ router.beforeEach((to, from, next) => {
 	}
 })
 
+/**
+ * 注册路由
+ * @param {*} userRouters 路由
+ * @returns 新路由
+ */
 function generateRouter(userRouters) {
 	const modules = import.meta.glob('../views/**/**.vue')
 	let newRouters = userRouters.map((router) => {

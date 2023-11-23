@@ -6,8 +6,9 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { configImageminPlugin } from './src/plugins/imagemin.js'
-import VitePrettier from 'vite-plugin-prettier'
-const PRETTIER_CONFIG = require('./.prettierrc.js')
+
+// import VitePrettier from 'vite-plugin-prettier' //格式化文件插件
+// const PRETTIER_CONFIG = require('./.prettierrc.js')
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,8 +29,8 @@ export default defineConfig({
 			resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
 		}),
 		svgBuilder('./src/svg/'), // 这里已经将src/icons/svg/下的svg全部导入，无需再单独导入
-		configImageminPlugin(), //压缩图片
-		VitePrettier(PRETTIER_CONFIG)
+		configImageminPlugin() //压缩图片
+		// VitePrettier(PRETTIER_CONFIG) //格式化文件插件，根据读取.prettierrc.js 规则，保存文件时自动格式化（大项目不建议使用）
 	],
 
 	resolve: {
